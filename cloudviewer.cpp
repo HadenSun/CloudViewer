@@ -58,6 +58,13 @@ CloudViewer::CloudViewer(QWidget *parent)
 	// Checkbox for coordinate and background color (connect)
 	connect(ui.cooCbx, SIGNAL(stateChanged(int)), this, SLOT(cooCbxChecked(int)));
 	connect(ui.bgcCbx, SIGNAL(stateChanged(int)), this, SLOT(bgcCbxChecked(int)));
+	// Change colormap properties (connect)
+	connect(ui.colorMapRight, SIGNAL(editingFinished()), this, SLOT(colormap()));
+	connect(ui.colorMapLeft, SIGNAL(editingFinished()), this, SLOT(colormap()));
+	connect(ui.colormap_x, SIGNAL(clicked()), this, SLOT(colormap()));
+	connect(ui.colormap_y, SIGNAL(clicked()), this, SLOT(colormap()));
+	connect(ui.colormap_z, SIGNAL(clicked()), this, SLOT(colormap()));
+	
 
 	/***** Slots connection of dataTree(QTreeWidget) widget *****/
 	// Item in dataTree is left-clicked (connect)
@@ -95,7 +102,7 @@ void CloudViewer::open()
 		timeStart();
 		mycloud.cloud.reset(new PointCloudT); // Reset cloud
 		QString filename = filenames[i];
-		std::string file_name = filename.toStdString();
+		std::string file_name = filename.toStdString();	
 		std::string subname = getFileName(file_name);  //提取全路径中的文件名（带后缀）
 
 		//更新状态栏
@@ -903,6 +910,156 @@ void CloudViewer::bgcCbxChecked(int value)
 	}
 	//viewer->updatePointCloud(cloud, "cloud");
 	ui.screen->update();
+}
+
+void CloudViewer::gray2rainbow(float value, int min, int max, uint8_t* r, uint8_t* g, uint8_t* b)
+{
+	float grayValue;
+	float tempvalue;
+
+	float par = (float)255 / (max - min);
+
+	grayValue = value;
+	if (grayValue < min)        //可能会出现找到的min并不是真正的最小值
+	{
+		*b = 0;
+		*g = 0;
+		*r = 0;
+		return;
+	}
+	else if (grayValue > max)                     //也可能会出现找到的max并不是真正的最大值
+	{
+		*b = 0;
+		*g = 0;
+		*r = 0;
+		return;
+	}
+	else
+	{
+		tempvalue = (float)(grayValue - min);
+	}
+	tempvalue = tempvalue*par;          //为了把深度值规划到(0~255之间)
+	/*
+	* color    R   G   B   gray
+	* red      255 0   0   255
+	* orange   255 127 0   204
+	* yellow   255 255 0   153
+	* green    0   255 0   102
+	* cyan     0   255 255 51
+	* blue     0   0   255 0
+	*/
+
+	tempvalue = 256 - tempvalue;
+
+
+	if (tempvalue <= 51)
+	{
+		*b = 255;
+		*g = (unsigned char)(tempvalue * 5);
+		*r = 0;
+	}
+	else if (tempvalue <= 102)
+	{
+		tempvalue -= 51;
+		*b = 255 - (unsigned char)(tempvalue * 5);
+		*g = 255;
+		*r = 0;
+	}
+	else if (tempvalue <= 153)
+	{
+		tempvalue -= 102;
+		*b = 0;
+		*g = 255;
+		*r = (unsigned char)(tempvalue * 5);
+	}
+	else if (tempvalue <= 204)
+	{
+		tempvalue -= 153;
+		*b = 0;
+		*g = 255 - static_cast<unsigned char>(tempvalue * 128.0 / 51 + 0.5);
+		*r = 255;
+	}
+	else if (tempvalue < 255)
+	{
+		tempvalue -= 204;
+		*b = 0;
+		*g = 127 - static_cast<unsigned char>(tempvalue * 127.0 / 51 + 0.5);
+		*r = 255;
+	}
+
+}
+void CloudViewer::colormap()
+{
+	//QMessageBox::information(this, "test", "Clicked");
+	int minNum = ui.colorMapLeft->text().toFloat();
+	int maxNum = ui.colorMapRight->text().toFloat();
+	int axis = 0;		//默认z
+	if ( maxNum < minNum)
+	{
+		QMessageBox::warning(this, "Warning", "The colormap properties have problems.");
+		return;
+	}
+
+	if (ui.colormap_x->isChecked())
+		axis = 1;
+	else if (ui.colormap_y->isChecked())
+		axis = 2;
+	else
+		axis = 0;
+	
+	QList<QTreeWidgetItem*> itemList = ui.dataTree->selectedItems();
+	int selected_item_count = ui.dataTree->selectedItems().size();
+
+	uint8_t r = 0;
+	uint8_t g = 0;
+	uint8_t b = 0;
+	float value;
+
+	// 如果未选中任何点云，则对视图窗口中的所有点云进行着色
+	if (selected_item_count == 0){
+		for (int i = 0; i != mycloud_vec.size(); i++){
+			for (int j = 0; j != mycloud_vec[i].cloud->points.size(); j++){
+				switch (axis)
+				{
+				case 1: value = mycloud_vec[i].cloud->points[j].x; break;
+				case 2: value = mycloud_vec[i].cloud->points[j].y; break;
+				default:value = mycloud_vec[i].cloud->points[j].z;
+					break;
+				}
+				gray2rainbow(value, minNum, maxNum, &r, &g, &b);
+				mycloud_vec[i].cloud->points[j].r = r;
+				mycloud_vec[i].cloud->points[j].g = g;
+				mycloud_vec[i].cloud->points[j].b = b;
+			}
+		}
+
+		// 输出窗口
+		consoleLog("Colormap", "All point clous", "", "");
+
+	}
+	else{
+		for (int i = 0; i != selected_item_count; i++){
+			int cloud_id = ui.dataTree->indexOfTopLevelItem(itemList[i]);
+			for (int j = 0; j != mycloud_vec[cloud_id].cloud->size(); j++){
+				switch (axis)
+				{
+				case 1: value = mycloud_vec[cloud_id].cloud->points[j].x; break;
+				case 2: value = mycloud_vec[cloud_id].cloud->points[j].y; break;
+				default:value = mycloud_vec[cloud_id].cloud->points[j].z;
+					break;
+				}
+				gray2rainbow(value, minNum, maxNum, &r, &g, &b);
+				mycloud_vec[cloud_id].cloud->points[j].r = r;
+				mycloud_vec[cloud_id].cloud->points[j].g = g;
+				mycloud_vec[cloud_id].cloud->points[j].b = b;
+			}
+		}
+
+		// 输出窗口
+		consoleLog("Colormap", "Point clouds selected", "", "");
+	}
+	showPointcloud();
+
 }
 
 

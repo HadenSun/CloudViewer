@@ -19,10 +19,12 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
@@ -102,6 +104,14 @@ public:
     QLabel *label_4;
     QLCDNumber *sizeLCD;
     QSlider *pSlider;
+    QHBoxLayout *horizontalLayout_6;
+    QLabel *label_5;
+    QRadioButton *colormap_x;
+    QRadioButton *colormap_y;
+    QRadioButton *colormap_z;
+    QHBoxLayout *horizontalLayout_7;
+    QLineEdit *colorMapLeft;
+    QLineEdit *colorMapRight;
     QPushButton *colorBtn;
     QCheckBox *cooCbx;
     QCheckBox *bgcCbx;
@@ -122,7 +132,7 @@ public:
     {
         if (CloudViewerClass->objectName().isEmpty())
             CloudViewerClass->setObjectName(QStringLiteral("CloudViewerClass"));
-        CloudViewerClass->resize(1246, 749);
+        CloudViewerClass->resize(1239, 749);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(85);
         sizePolicy.setVerticalStretch(0);
@@ -275,7 +285,7 @@ public:
         CloudViewerClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(CloudViewerClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1246, 26));
+        menuBar->setGeometry(QRect(0, 0, 1239, 23));
         QFont font;
         font.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
         menuBar->setFont(font);
@@ -319,7 +329,7 @@ public:
         CloudViewerClass->setStatusBar(statusBar);
         RGBDock = new QDockWidget(CloudViewerClass);
         RGBDock->setObjectName(QStringLiteral("RGBDock"));
-        RGBDock->setMinimumSize(QSize(245, 400));
+        RGBDock->setMinimumSize(QSize(300, 467));
         RGBDock->setMaximumSize(QSize(300, 524287));
         dockWidgetContents_4 = new QWidget();
         dockWidgetContents_4->setObjectName(QStringLiteral("dockWidgetContents_4"));
@@ -489,6 +499,51 @@ public:
         pSlider->setOrientation(Qt::Horizontal);
 
         verticalLayout->addWidget(pSlider);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setSpacing(6);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        label_5 = new QLabel(dockWidgetContents_4);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setFont(font1);
+        label_5->setCursor(QCursor(Qt::ArrowCursor));
+
+        horizontalLayout_6->addWidget(label_5);
+
+        colormap_x = new QRadioButton(dockWidgetContents_4);
+        colormap_x->setObjectName(QStringLiteral("colormap_x"));
+
+        horizontalLayout_6->addWidget(colormap_x);
+
+        colormap_y = new QRadioButton(dockWidgetContents_4);
+        colormap_y->setObjectName(QStringLiteral("colormap_y"));
+
+        horizontalLayout_6->addWidget(colormap_y);
+
+        colormap_z = new QRadioButton(dockWidgetContents_4);
+        colormap_z->setObjectName(QStringLiteral("colormap_z"));
+        colormap_z->setChecked(true);
+
+        horizontalLayout_6->addWidget(colormap_z);
+
+
+        verticalLayout->addLayout(horizontalLayout_6);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        colorMapLeft = new QLineEdit(dockWidgetContents_4);
+        colorMapLeft->setObjectName(QStringLiteral("colorMapLeft"));
+
+        horizontalLayout_7->addWidget(colorMapLeft);
+
+        colorMapRight = new QLineEdit(dockWidgetContents_4);
+        colorMapRight->setObjectName(QStringLiteral("colorMapRight"));
+
+        horizontalLayout_7->addWidget(colorMapRight);
+
+
+        verticalLayout->addLayout(horizontalLayout_7);
 
         colorBtn = new QPushButton(dockWidgetContents_4);
         colorBtn->setObjectName(QStringLiteral("colorBtn"));
@@ -776,6 +831,12 @@ public:
         label_2->setText(QApplication::translate("CloudViewerClass", "Green", 0));
         label_3->setText(QApplication::translate("CloudViewerClass", "Blue", 0));
         label_4->setText(QApplication::translate("CloudViewerClass", "Point Size", 0));
+        label_5->setText(QApplication::translate("CloudViewerClass", "Color Map", 0));
+        colormap_x->setText(QApplication::translate("CloudViewerClass", "X", 0));
+        colormap_y->setText(QApplication::translate("CloudViewerClass", "Y", 0));
+        colormap_z->setText(QApplication::translate("CloudViewerClass", "Z", 0));
+        colorMapLeft->setText(QApplication::translate("CloudViewerClass", "0", 0));
+        colorMapRight->setText(QApplication::translate("CloudViewerClass", "30000", 0));
         colorBtn->setText(QApplication::translate("CloudViewerClass", "Color", 0));
         cooCbx->setText(QApplication::translate("CloudViewerClass", "Coordinate", 0));
         bgcCbx->setText(QApplication::translate("CloudViewerClass", "Backgronud:Dark/Light", 0));

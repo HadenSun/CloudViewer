@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_CloudViewer_t {
-    QByteArrayData data[20];
-    char stringdata0[254];
+    QByteArrayData data[30];
+    char stringdata0[328];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,24 +41,36 @@ QT_MOC_LITERAL(8, 99, 14), // "gSliderChanged"
 QT_MOC_LITERAL(9, 114, 14), // "bSliderChanged"
 QT_MOC_LITERAL(10, 129, 13), // "cooCbxChecked"
 QT_MOC_LITERAL(11, 143, 13), // "bgcCbxChecked"
-QT_MOC_LITERAL(12, 157, 17), // "pointcolorChanged"
-QT_MOC_LITERAL(13, 175, 14), // "bgcolorChanged"
-QT_MOC_LITERAL(14, 190, 8), // "mainview"
-QT_MOC_LITERAL(15, 199, 8), // "leftview"
-QT_MOC_LITERAL(16, 208, 7), // "topview"
-QT_MOC_LITERAL(17, 216, 12), // "itemSelected"
-QT_MOC_LITERAL(18, 229, 16), // "QTreeWidgetItem*"
-QT_MOC_LITERAL(19, 246, 7) // "popMenu"
+QT_MOC_LITERAL(12, 157, 8), // "colormap"
+QT_MOC_LITERAL(13, 166, 12), // "gray2rainbow"
+QT_MOC_LITERAL(14, 179, 3), // "min"
+QT_MOC_LITERAL(15, 183, 3), // "max"
+QT_MOC_LITERAL(16, 187, 8), // "uint8_t*"
+QT_MOC_LITERAL(17, 196, 1), // "r"
+QT_MOC_LITERAL(18, 198, 1), // "g"
+QT_MOC_LITERAL(19, 200, 1), // "b"
+QT_MOC_LITERAL(20, 202, 12), // "itemSelected"
+QT_MOC_LITERAL(21, 215, 16), // "QTreeWidgetItem*"
+QT_MOC_LITERAL(22, 232, 7), // "popMenu"
+QT_MOC_LITERAL(23, 240, 8), // "hideItem"
+QT_MOC_LITERAL(24, 249, 8), // "showItem"
+QT_MOC_LITERAL(25, 258, 10), // "deleteItem"
+QT_MOC_LITERAL(26, 269, 16), // "popMenuInConsole"
+QT_MOC_LITERAL(27, 286, 12), // "clearConsole"
+QT_MOC_LITERAL(28, 299, 13), // "enableConsole"
+QT_MOC_LITERAL(29, 313, 14) // "disableConsole"
 
     },
     "CloudViewer\0colorBtnPressed\0\0"
     "RGBsliderReleased\0psliderReleased\0"
     "pSliderChanged\0value\0rSliderChanged\0"
     "gSliderChanged\0bSliderChanged\0"
-    "cooCbxChecked\0bgcCbxChecked\0"
-    "pointcolorChanged\0bgcolorChanged\0"
-    "mainview\0leftview\0topview\0itemSelected\0"
-    "QTreeWidgetItem*\0popMenu"
+    "cooCbxChecked\0bgcCbxChecked\0colormap\0"
+    "gray2rainbow\0min\0max\0uint8_t*\0r\0g\0b\0"
+    "itemSelected\0QTreeWidgetItem*\0popMenu\0"
+    "hideItem\0showItem\0deleteItem\0"
+    "popMenuInConsole\0clearConsole\0"
+    "enableConsole\0disableConsole"
 };
 #undef QT_MOC_LITERAL
 
@@ -68,7 +80,7 @@ static const uint qt_meta_data_CloudViewer[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -76,22 +88,26 @@ static const uint qt_meta_data_CloudViewer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x0a /* Public */,
-       3,    0,   95,    2, 0x0a /* Public */,
-       4,    0,   96,    2, 0x0a /* Public */,
-       5,    1,   97,    2, 0x0a /* Public */,
-       7,    1,  100,    2, 0x0a /* Public */,
-       8,    1,  103,    2, 0x0a /* Public */,
-       9,    1,  106,    2, 0x0a /* Public */,
-      10,    1,  109,    2, 0x0a /* Public */,
-      11,    1,  112,    2, 0x0a /* Public */,
-      12,    0,  115,    2, 0x0a /* Public */,
-      13,    0,  116,    2, 0x0a /* Public */,
-      14,    0,  117,    2, 0x0a /* Public */,
-      15,    0,  118,    2, 0x0a /* Public */,
-      16,    0,  119,    2, 0x0a /* Public */,
-      17,    2,  120,    2, 0x0a /* Public */,
-      19,    1,  125,    2, 0x0a /* Public */,
+       1,    0,  114,    2, 0x0a /* Public */,
+       3,    0,  115,    2, 0x0a /* Public */,
+       4,    0,  116,    2, 0x0a /* Public */,
+       5,    1,  117,    2, 0x0a /* Public */,
+       7,    1,  120,    2, 0x0a /* Public */,
+       8,    1,  123,    2, 0x0a /* Public */,
+       9,    1,  126,    2, 0x0a /* Public */,
+      10,    1,  129,    2, 0x0a /* Public */,
+      11,    1,  132,    2, 0x0a /* Public */,
+      12,    0,  135,    2, 0x0a /* Public */,
+      13,    6,  136,    2, 0x0a /* Public */,
+      20,    2,  149,    2, 0x0a /* Public */,
+      22,    1,  154,    2, 0x0a /* Public */,
+      23,    0,  157,    2, 0x0a /* Public */,
+      24,    0,  158,    2, 0x0a /* Public */,
+      25,    0,  159,    2, 0x0a /* Public */,
+      26,    1,  160,    2, 0x0a /* Public */,
+      27,    0,  163,    2, 0x0a /* Public */,
+      28,    0,  164,    2, 0x0a /* Public */,
+      29,    0,  165,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
@@ -104,12 +120,16 @@ static const uint qt_meta_data_CloudViewer[] = {
     QMetaType::Void, QMetaType::Int,    6,
     QMetaType::Void, QMetaType::Int,    6,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 18, QMetaType::Int,    2,    2,
+    QMetaType::Void, QMetaType::Float, QMetaType::Int, QMetaType::Int, 0x80000000 | 16, 0x80000000 | 16, 0x80000000 | 16,    6,   14,   15,   17,   18,   19,
+    QMetaType::Void, 0x80000000 | 21, QMetaType::Int,    2,    2,
     QMetaType::Void, QMetaType::QPoint,    2,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QPoint,    2,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -129,13 +149,17 @@ void CloudViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 6: _t->bSliderChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 7: _t->cooCbxChecked((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 8: _t->bgcCbxChecked((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 9: _t->pointcolorChanged(); break;
-        case 10: _t->bgcolorChanged(); break;
-        case 11: _t->mainview(); break;
-        case 12: _t->leftview(); break;
-        case 13: _t->topview(); break;
-        case 14: _t->itemSelected((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 15: _t->popMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 9: _t->colormap(); break;
+        case 10: _t->gray2rainbow((*reinterpret_cast< float(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< uint8_t*(*)>(_a[4])),(*reinterpret_cast< uint8_t*(*)>(_a[5])),(*reinterpret_cast< uint8_t*(*)>(_a[6]))); break;
+        case 11: _t->itemSelected((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 12: _t->popMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 13: _t->hideItem(); break;
+        case 14: _t->showItem(); break;
+        case 15: _t->deleteItem(); break;
+        case 16: _t->popMenuInConsole((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 17: _t->clearConsole(); break;
+        case 18: _t->enableConsole(); break;
+        case 19: _t->disableConsole(); break;
         default: ;
         }
     }
@@ -166,13 +190,13 @@ int CloudViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 20)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 20;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 20)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 16;
+        _id -= 20;
     }
     return _id;
 }

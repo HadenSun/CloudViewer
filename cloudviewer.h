@@ -148,6 +148,9 @@ private:
 	// Slots of checkBox
 	void cooCbxChecked(int value);
 	void bgcCbxChecked(int value);
+	// Slots of colorMap
+	void colormap();
+	void gray2rainbow(float value, int min, int max, uint8_t* r, uint8_t* g, uint8_t* b);
 
 	/***** Slots of dataTree(QTreeWidget) widget *****/
 	// Item in dataTree is left-clicked

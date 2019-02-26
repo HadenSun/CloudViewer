@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1246</width>
+    <width>1239</width>
     <height>749</height>
    </rect>
   </property>
@@ -52,7 +52,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_5">
     <item>
-     <widget class="QVTKWidget" name="screen" native="true">
+     <widget class="QVTKWidget" name="screen">
       <property name="minimumSize">
        <size>
         <width>600</width>
@@ -68,8 +68,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1246</width>
-     <height>26</height>
+     <width>1239</width>
+     <height>23</height>
     </rect>
    </property>
    <property name="font">
@@ -216,8 +216,8 @@
   <widget class="QDockWidget" name="RGBDock">
    <property name="minimumSize">
     <size>
-     <width>245</width>
-     <height>400</height>
+     <width>300</width>
+     <height>467</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -527,6 +527,68 @@
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="cursor">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+           <property name="text">
+            <string>Color Map</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colormap_x">
+           <property name="text">
+            <string>X</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colormap_y">
+           <property name="text">
+            <string>Y</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colormap_z">
+           <property name="text">
+            <string>Z</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QLineEdit" name="colorMapLeft">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="colorMapRight">
+           <property name="text">
+            <string>30000</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QPushButton" name="colorBtn">
