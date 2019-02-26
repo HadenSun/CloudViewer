@@ -514,6 +514,9 @@ void CloudViewer::initial()
 	mycloud.cloud->resize(1);
 	viewer.reset(new pcl::visualization::PCLVisualizer("viewer", false));
 	//viewer->addPointCloud(cloud, "cloud");
+	
+	clicked_points.reset(new pcl::PointCloud<pcl::PointXYZRGBA>);
+	viewer->registerPointPickingCallback(&CloudViewer::pp_callback,*this, NULL);
 
 	ui.screen->SetRenderWindow(viewer->getRenderWindow());
 	viewer->setupInteractor(ui.screen->GetInteractor(), ui.screen->GetRenderWindow());
@@ -1632,4 +1635,25 @@ int CloudViewer::convertWireframe()
 	}
 	return 0;
 
+}
+
+
+void CloudViewer::pp_callback(const pcl::visualization::PointPickingEvent& event, void *args)
+{
+	if (event.getPointIndex() == -1)
+		return;
+
+	pcl::PointXYZRGBA current_point;
+	event.getPoint(current_point.x, current_point.y, current_point.z);
+	clicked_points->points.clear();
+	clicked_points->points.push_back(current_point);
+
+	// 红色点标出选择点
+	pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZRGBA> red(clicked_points, 255, 0, 0);
+	viewer->removePointCloud("clicked_points");
+	viewer->addPointCloud(clicked_points, red, "clicked_points");
+	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 10, "clicked_points");
+
+	QString details = QString("X:%1 Y:%2 Z:%3").arg((int)current_point.x, 5, 10, QLatin1Char(' ')).arg((int)current_point.y, 5, 10, QLatin1Char(' ')).arg((int)current_point.z, 5, 10, QLatin1Char(' '));
+	consoleLog("Choose point", "", details, "");
 }

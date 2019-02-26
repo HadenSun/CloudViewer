@@ -67,6 +67,7 @@ private:
 	MyCloud mycloud;
 	std::vector<MyCloud> mycloud_vec;
 	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
+	pcl::PointCloud<pcl::PointXYZRGBA>::Ptr clicked_points;
 
 	QString save_filename;
 	long total_points = 0; //Total amount of points in the viewer
@@ -165,6 +166,8 @@ private:
 	void clearConsole();
 	void enableConsole();
 	void disableConsole();
+
+	void pp_callback(const pcl::visualization::PointPickingEvent& event, void *args);
 };
 
 #endif // CLOUDVIEWER_H

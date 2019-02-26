@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_CloudViewer_t {
-    QByteArrayData data[30];
-    char stringdata0[328];
+    QByteArrayData data[34];
+    char stringdata0[389];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -58,7 +58,11 @@ QT_MOC_LITERAL(25, 258, 10), // "deleteItem"
 QT_MOC_LITERAL(26, 269, 16), // "popMenuInConsole"
 QT_MOC_LITERAL(27, 286, 12), // "clearConsole"
 QT_MOC_LITERAL(28, 299, 13), // "enableConsole"
-QT_MOC_LITERAL(29, 313, 14) // "disableConsole"
+QT_MOC_LITERAL(29, 313, 14), // "disableConsole"
+QT_MOC_LITERAL(30, 328, 11), // "pp_callback"
+QT_MOC_LITERAL(31, 340, 37), // "pcl::visualization::PointPick..."
+QT_MOC_LITERAL(32, 378, 5), // "event"
+QT_MOC_LITERAL(33, 384, 4) // "args"
 
     },
     "CloudViewer\0colorBtnPressed\0\0"
@@ -70,7 +74,9 @@ QT_MOC_LITERAL(29, 313, 14) // "disableConsole"
     "itemSelected\0QTreeWidgetItem*\0popMenu\0"
     "hideItem\0showItem\0deleteItem\0"
     "popMenuInConsole\0clearConsole\0"
-    "enableConsole\0disableConsole"
+    "enableConsole\0disableConsole\0pp_callback\0"
+    "pcl::visualization::PointPickingEvent\0"
+    "event\0args"
 };
 #undef QT_MOC_LITERAL
 
@@ -80,7 +86,7 @@ static const uint qt_meta_data_CloudViewer[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      20,   14, // methods
+      21,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -88,26 +94,27 @@ static const uint qt_meta_data_CloudViewer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  114,    2, 0x0a /* Public */,
-       3,    0,  115,    2, 0x0a /* Public */,
-       4,    0,  116,    2, 0x0a /* Public */,
-       5,    1,  117,    2, 0x0a /* Public */,
-       7,    1,  120,    2, 0x0a /* Public */,
-       8,    1,  123,    2, 0x0a /* Public */,
-       9,    1,  126,    2, 0x0a /* Public */,
-      10,    1,  129,    2, 0x0a /* Public */,
-      11,    1,  132,    2, 0x0a /* Public */,
-      12,    0,  135,    2, 0x0a /* Public */,
-      13,    6,  136,    2, 0x0a /* Public */,
-      20,    2,  149,    2, 0x0a /* Public */,
-      22,    1,  154,    2, 0x0a /* Public */,
-      23,    0,  157,    2, 0x0a /* Public */,
-      24,    0,  158,    2, 0x0a /* Public */,
-      25,    0,  159,    2, 0x0a /* Public */,
-      26,    1,  160,    2, 0x0a /* Public */,
-      27,    0,  163,    2, 0x0a /* Public */,
-      28,    0,  164,    2, 0x0a /* Public */,
-      29,    0,  165,    2, 0x0a /* Public */,
+       1,    0,  119,    2, 0x0a /* Public */,
+       3,    0,  120,    2, 0x0a /* Public */,
+       4,    0,  121,    2, 0x0a /* Public */,
+       5,    1,  122,    2, 0x0a /* Public */,
+       7,    1,  125,    2, 0x0a /* Public */,
+       8,    1,  128,    2, 0x0a /* Public */,
+       9,    1,  131,    2, 0x0a /* Public */,
+      10,    1,  134,    2, 0x0a /* Public */,
+      11,    1,  137,    2, 0x0a /* Public */,
+      12,    0,  140,    2, 0x0a /* Public */,
+      13,    6,  141,    2, 0x0a /* Public */,
+      20,    2,  154,    2, 0x0a /* Public */,
+      22,    1,  159,    2, 0x0a /* Public */,
+      23,    0,  162,    2, 0x0a /* Public */,
+      24,    0,  163,    2, 0x0a /* Public */,
+      25,    0,  164,    2, 0x0a /* Public */,
+      26,    1,  165,    2, 0x0a /* Public */,
+      27,    0,  168,    2, 0x0a /* Public */,
+      28,    0,  169,    2, 0x0a /* Public */,
+      29,    0,  170,    2, 0x0a /* Public */,
+      30,    2,  171,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
@@ -130,6 +137,7 @@ static const uint qt_meta_data_CloudViewer[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 31, QMetaType::VoidStar,   32,   33,
 
        0        // eod
 };
@@ -160,6 +168,7 @@ void CloudViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 17: _t->clearConsole(); break;
         case 18: _t->enableConsole(); break;
         case 19: _t->disableConsole(); break;
+        case 20: _t->pp_callback((*reinterpret_cast< const pcl::visualization::PointPickingEvent(*)>(_a[1])),(*reinterpret_cast< void*(*)>(_a[2]))); break;
         default: ;
         }
     }
@@ -190,13 +199,13 @@ int CloudViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 20)
+        if (_id < 21)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 20;
+        _id -= 21;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 20)
+        if (_id < 21)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 20;
+        _id -= 21;
     }
     return _id;
 }
